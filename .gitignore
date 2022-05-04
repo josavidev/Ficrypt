@@ -1,0 +1,16 @@
+# virtualenv
+venv
+
+# python
+__pycache__
+
+# vscode
+.vscode
+
+# pytest
+.pytest_cache
+
+# configuration files
+*.config
+*.cfg
+*.ini
