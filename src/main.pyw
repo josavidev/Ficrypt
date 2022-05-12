@@ -3,6 +3,7 @@
 
 from PyQt5.QtWidgets import (QWidget, QVBoxLayout, QPushButton, QApplication,
                              QTabWidget, QErrorMessage, QMessageBox)
+from PyQt5.QtGui import QIcon
 from filepicker import SingleFilePicker
 from cipherman import cipher, fileman
 from pathlib import Path
@@ -14,7 +15,11 @@ class MainWindow(QWidget):
         self.__state = {}
         self.__on_create()
 
+    def no_resize(self):
+        self.setFixedSize(self.size())
+
     def __on_create(self):
+        self.setWindowIcon(QIcon('res/img/icon.png'))
         self.setWindowTitle('Ficrypt')
         self.setLayout(QVBoxLayout())
         self.__load_widgets()
@@ -30,6 +35,7 @@ class MainWindow(QWidget):
         self.__target_enc_sfp.valmsg = 'Directory target for encrypt not selected!'
         self.__target_enc_sfp.toggle_mode_dir(True)
         encrypt_btn = QPushButton('Encrypt file')
+        encrypt_btn.setProperty('class', 'btn-primary')
         encrypt_btn.clicked.connect(self.__encrypt_btn_clicked)
         encrypt_wg = QWidget()
         encrypt_wg.setLayout(QVBoxLayout())
@@ -48,6 +54,7 @@ class MainWindow(QWidget):
         self.__target_dec_sfp.valmsg = 'Directory target for decrypt not selected!'
         self.__target_dec_sfp.toggle_mode_dir(True)
         decrypt_btn = QPushButton('Decrypt file')
+        decrypt_btn.setProperty('class', 'btn-primary')
         decrypt_btn.clicked.connect(self.__decrypt_btn_clicked)
         decrypt_wg = QWidget()
         decrypt_wg.setLayout(QVBoxLayout())
@@ -139,5 +146,9 @@ class MainWindow(QWidget):
 
 if __name__ == '__main__':
     app = QApplication([])
+    with open('src/main.qss', 'r') as qss:
+        sheet = ''.join(qss.readlines())
+        app.setStyleSheet(sheet)
     mw = MainWindow()
+    mw.no_resize()
     app.exec_()
