@@ -10,5 +10,5 @@ else
     pip3 install -r requirements.txt
     echo "Installation finished!"
 fi
-python3 src/main.pyw
+python src/main.pyw
 exit 0

@@ -13,6 +13,12 @@ Please use shell script `ficrypt.sh` to run application, this script creates a v
 > ./ficrypt.sh
 ```
 
+#### **Ubuntu and derivatives**
+In Ubuntu (*specially if you installed minimal version*) you may need install the package `libxcb-xinerama0` to run the application. You can install it via apt:
+```
+> sudo apt install libxcb-xinerama0
+```
+
 ---
 ### Dependencies
 - `pycryptodome`: Because `pycrypto` is officially unsupported.
